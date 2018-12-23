@@ -6,20 +6,24 @@ import (
 	"log"
 )
 
+// Table representing CSV file.
 type Table struct {
 	Headers []Header
 	Rows    []Row
 }
 
+// Header in CSV table.
 type Header struct {
 	Name string
 }
 
+// Row in a CSV Table.
 type Row struct {
 	Header Header
 	Value  string
 }
 
+// CreateTable creates a *Table given a *csv.Reader by parsing the lines it reads.
 func CreateTable(reader *csv.Reader) *Table {
 	table := &Table{}
 	initializedHeader := false
