@@ -1,0 +1,19 @@
+syntax = "proto2";
+
+package message;
+
+/* Contains the transaction history of an account.  */
+message AccountTransactions {
+    repeated Field field = 1;
+    repeated Transaction transaction = 2;
+}
+
+/* Name of the values in this column. */
+message Field {
+    optional string name = 1;
+}
+
+/* Values of a single transaction. */
+message Transaction {
+    repeated string value = 1;
+}
