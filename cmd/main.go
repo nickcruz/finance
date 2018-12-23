@@ -6,8 +6,6 @@ import (
 	"flag"
 	"fmt"
 	"os"
-
-	"github.com/nickcruz/finance"
 )
 
 // Usage: go run main.go file1.csv file2.csv file3.csv ...
@@ -19,5 +17,6 @@ func main() {
 	csvFile, _ := os.Open(files[0])
 	csvReader := csv.NewReader(bufio.NewReader(csvFile))
 
-	finance.CreateTable(csvReader)
+	accountTransactions := convertToProtos(csvReader)
+	fmt.Println("Account:\n", accountTransactions.String())
 }
