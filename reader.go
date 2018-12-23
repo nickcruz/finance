@@ -29,6 +29,7 @@ func CreateTable(reader *csv.Reader) *Table {
 		} else if error != nil {
 			log.Fatal(error)
 		}
+		println(line)
 	}
 	return table
 }
