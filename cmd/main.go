@@ -5,8 +5,9 @@ import (
 	"encoding/csv"
 	"flag"
 	"fmt"
-	"github.com/nickcruz/finance"
 	"os"
+
+	"github.com/nickcruz/finance"
 )
 
 // Usage: go run main.go file1.csv file2.csv file3.csv ...
@@ -18,5 +19,5 @@ func main() {
 	csvFile, _ := os.Open(files[0])
 	csvReader := csv.NewReader(bufio.NewReader(csvFile))
 
-	fmt.Println(finance.CreateTable(csvReader))
+	finance.CreateTable(csvReader)
 }
