@@ -1,11 +1,16 @@
 package main
 
 import (
-	"fmt"
 	"html/template"
 	"log"
 	"net/http"
 )
+
+var templates = template.Must(template.ParseFiles(
+	"static/index.html",
+	"static/upload.html",
+	"static/report.html",
+))
 
 func main() {
 	http.HandleFunc("/", indexHandler)
@@ -27,13 +32,7 @@ func reportHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func renderHtml(w http.ResponseWriter, tmpl string) {
-	templateFile := fmt.Sprintf("static/%s.html", tmpl)
-	t, err := template.ParseFiles(templateFile)
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
-	err = t.Execute(w, nil)
+	err := templates.ExecuteTemplate(w, tmpl + ".html", nil)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
