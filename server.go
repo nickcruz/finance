@@ -16,7 +16,10 @@ func main() {
 	http.HandleFunc("/", indexHandler)
 	http.HandleFunc("/upload/", uploadHandler)
 	http.HandleFunc("/report/", reportHandler)
-	log.Fatal(http.ListenAndServe(":8080", nil))
+
+	addr := ":8080"
+	log.Printf("Starting server at %s\n", addr)
+	log.Fatal(http.ListenAndServe(addr, nil))
 }
 
 func indexHandler(w http.ResponseWriter, r *http.Request) {
